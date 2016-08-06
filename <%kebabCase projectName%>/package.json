@@ -1,0 +1,85 @@
+<%! projectName # Name of your new project %>
+<%! description # Short description of your new project %>
+<%! author # Author (Your Name <your@mail.com>) %>
+
+{
+  "name": "<% kebabCase projectName %>",
+  "version": "0.1.0",
+  "description": "<% description %>",
+  "author": "<% author %>",
+  "config": {
+    "clientSrcDir": "client",
+    "clientDistDir": "www",
+    "clientAssetsDir": "assets",
+    "clientJsEntry": "index.js",
+    "clientJsOutput": "build.js",
+    "clientCssEntry": "index.styl",
+    "clientCssOutput": "build.css",
+    "clientServerPort": 9000
+  },
+  "browserify": {
+    "transform": [
+      "envify",
+      "require-globify",
+      "vueify",
+      "babelify"
+    ]
+  },
+  "scripts": {
+    "client:clean": "rimraf $npm_package_config_clientDistDir && mkdirp $npm_package_config_clientDistDir",
+    "client:copy:html": "cp $npm_package_config_clientSrcDir/*.html $npm_package_config_clientDistDir",
+    "client:copy:assets": "rimraf $npm_package_config_clientDistDir/$npm_package_config_clientAssetsDir && cp -r $npm_package_config_clientSrcDir/$npm_package_config_clientAssetsDir $npm_package_config_clientDistDir/$npm_package_config_clientAssetsDir",
+    "client:copy": "npm run client:copy:html & npm run client:copy:assets",
+    "client:build:js": "cross-env NODE_ENV=development browserify --extension=vue -e $npm_package_config_clientSrcDir/$npm_package_config_clientJsEntry > $npm_package_config_clientDistDir/$npm_package_config_clientJsOutput",
+    "client:build:js:prod": "cross-env NODE_ENV=production browserify --extension=vue -e $npm_package_config_clientSrcDir/$npm_package_config_clientJsEntry | uglifyjs -c warnings=false -m > $npm_package_config_clientDistDir/$npm_package_config_clientJsOutput",
+    "client:build:css": "stylus -u autoprefixer-stylus --include-css --include $npm_package_config_clientSrcDir < $npm_package_config_clientSrcDir/$npm_package_config_clientCssEntry > $npm_package_config_clientDistDir/$npm_package_config_clientCssOutput",
+    "client:build:css:prod": "stylus -u autoprefixer-stylus --include-css --include $npm_package_config_clientSrcDir < $npm_package_config_clientSrcDir/$npm_package_config_clientCssEntry | csso > $npm_package_config_clientDistDir/$npm_package_config_clientCssOutput",
+    "client:build": "npm run client:build:js && npm run client:build:css",
+    "client:build:prod": "npm run client:build:js:prod && npm run client:build:css:prod",
+    "client:watch:html": "chokidar $npm_package_config_clientSrcDir/*.html -c 'npm run client:copy:html'",
+    "client:watch:js": "cross-env NODE_ENV=development watchify -v -d -e -p browserify-hmr --extension=vue $npm_package_config_clientSrcDir/$npm_package_config_clientJsEntry -o $npm_package_config_clientDistDir/$npm_package_config_clientJsOutput",
+    "client:watch:css": "npm run client:build:css && chokidar $npm_package_config_clientSrcDir/$npm_package_config_clientCssEntry -c 'npm run client:build:css'",
+    "client:watch": "npm run client:watch:js & npm run client:watch:html & npm run client:watch:css",
+    "client:serve": "browser-sync start --serveStatic $npm_package_config_clientDistDir --files=\"$npm_package_config_clientDistDir/*.html,$npm_package_config_clientDistDir/*.css\" --port $npm_package_config_clientServerPort --no-notify --no-open",
+    "client:lint:html": "htmllint -f \"$npm_package_config_clientSrcDir/**/*.html\" --indent-width=2 --indent-width-cont --tag-self-close --class-style=dash --id-class-style=dash --id-no-dup --label-req-for --attr-name-style=none",
+    "client:lint:js": "standard $npm_package_config_clientSrcDir/**/*.js",
+    "client:lint:styl": "stylint $npm_package_config_clientSrcDir",
+    "client:lint": "npm run client:lint:js && npm run client:lint:styl && npm run client:lint:html",
+    "client:test:watch": "karma start karma.config.js",
+    "client:test": "karma start karma.config.js --single-run",
+    "client": "npm run client:clean && npm run client:copy && npm run client:watch & npm run client:serve"
+  },
+  "devDependencies": {
+    "autoprefixer-stylus": "^0.9.4",
+    "babel-plugin-transform-runtime": "^6.12.0",
+    "babel-preset-es2015": "^6.9.0",
+    "babelify": "^7.3.0",
+    "browser-sync": "^2.13.0",
+    "browserify": "^13.0.1",
+    "browserify-hmr": "^0.3.1",
+    "chokidar-cli": "^1.2.0",
+    "cross-env": "^2.0.0",
+    "envify": "^3.4.1",
+    "htmllint-simple-cli": "^0.1.0",
+    "karma": "^1.1.2",
+    "karma-browserify": "^5.1.0",
+    "karma-mocha": "^1.1.1",
+    "karma-phantomjs-launcher": "^1.0.1",
+    "karma-spec-reporter": "0.0.26",
+    "mkdirp": "^0.5.1",
+    "mocha": "^2.5.3",
+    "require-globify": "^1.4.0",
+    "rimraf": "^2.5.4",
+    "standard": "^7.1.2",
+    "stylint": "^1.5.6",
+    "stylus": "^0.54.5",
+    "uglifyjs": "^2.4.10",
+    "vueify": "^9.2.4",
+    "watchify": "^3.7.0"
+  },
+  "dependencies": {
+    "bulma": "^0.1.2",
+    "vue": "^2.0.0-beta.6",
+    "vue-router": "^2.0.0-rc.1"
+  }
+}

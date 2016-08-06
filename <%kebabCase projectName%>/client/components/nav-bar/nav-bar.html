@@ -1,0 +1,25 @@
+<nav class="nav nav-bar">
+  <div class="nav-left">
+    <router-link class="nav-item" :to="{ name: 'home' }" exact>
+      Home
+    </router-link>
+  </div>
+
+  <span class="nav-toggle" @click="onNavToggleClick">
+    <span></span>
+    <span></span>
+    <span></span>
+  </span>
+
+  <div :class="{'nav-right': true, 'nav-menu': true, 'is-active': menuActive}">
+    <a class="nav-item" href="#">
+      Some
+    </a>
+    <a class="nav-item" href="#">
+      More
+    </a>
+    <a class="nav-item" href="#">
+      Links
+    </a>
+  </div>
+</nav>
