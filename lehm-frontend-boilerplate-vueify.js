@@ -27,7 +27,10 @@ ${variables.description}`
     }
 
     utils.Shell.cd(path)
+
     utils.Shell.exec('mv gitignore .gitignore')
+    utils.Shell.exec('mv babelrc .babelrc')
+
     utils.Fs.writeFileSync(path + '/README.md', readme, 'utf8')
 
     utils.Inquirer.prompt(yesNo('Install all dependencies')).then((the) => {
