@@ -131,17 +131,12 @@ Take this Vue component for example:
 
     {
       template: 'Hi {{userInfo.username}}!',
-      data () {
-        return {
-          userInfo: { username: '...' }
-        }
-      },
       watch: {
         userInfo: 'onUserInfoChange'
       },
-      mounted: {
-        this.$stateWatch('userInfo')
-        // this.$stateWatch(['keypath1', 'keypath2'])
+      created: {
+        this.$stateMap('userInfo')
+        // this.$stateMap(['keypath1', 'keypath2'])
 
         // action will change global state
         // $stateWatch will change local state
@@ -155,5 +150,9 @@ Take this Vue component for example:
       }
     }
 
+Make sure that you call `$stateMap` in the `created` callback. That way you
+avoid Vue throwing an warning that the mapped field does not exist in `$data`.
+Otherwise just define it yourself and call `$stateMap` anywhere.
+
 Note that right now you only can access top level keypaths in the state. For
-example `this.$stateWatch('userInfo.username')` will not work. Work in progress.
+example `this.$stateMap('userInfo.username')` will not work. Work in progress.
