@@ -70,6 +70,8 @@ Vue.mixin({
           // fix that with lodash's _.set method
           this[keypath] = val
         }, { deep: true })
+
+        this[keypath] = $root[keypath]
       }
     }
 
