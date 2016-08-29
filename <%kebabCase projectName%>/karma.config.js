@@ -8,7 +8,8 @@ module.exports = function (karma) {
       'client/**/*_spec.js': [ 'browserify' ]
     },
     browserify: {
-      debug: true
+      debug: true,
+      transform: ['vueify', 'babelify']
     }
   })
 }
