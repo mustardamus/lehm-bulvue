@@ -37,7 +37,8 @@ recognizes the `.vue` extension, so `require('./some.vue')` is the same as
 `require('./some')`.
 
 It also uses the [Babelify transform](https://github.com/babel/babelify) with
-the [ES2015](https://babeljs.io/docs/plugins/preset-es2015/)
+the [ES2015](https://babeljs.io/docs/plugins/preset-es2015/) and
+[Stage-2](https://babeljs.io/docs/plugins/preset-stage-2)
 [Babel](https://babeljs.io/) presets. That way you can
 [write ES2015](https://github.com/getify/You-Dont-Know-JS/blob/master/es6%20&%20beyond/README.md#you-dont-know-js-es6--beyond).
 
@@ -103,9 +104,17 @@ transforms, so easily use `require()` and write ES2015.
 ### Serving static files with auto-reload
 
 [BrowserSync](https://browsersync.io/docs) is used to serve the static files
-from `./www` on port `9000`. Whenever files in `./www` are changed (ie
-re-bundling has happened), it will automatically reload connected browsers.
-CSS is injected without any hard-reloading.
+from `./www` on port `9000`. Whenever `*.html` or `*.css` files in `./www` are
+changed (ie re-bundling/copying has happened), it will automatically reload
+connected browsers. CSS is injected without any hard-reloading. JS code is
+hot-reloaded as described above.
+
+
+### Keep your Node Modules up to date
+
+To automatically update your Node Modules and safe the newer version to
+`package.json`, it is recommended to use
+[updtr](https://github.com/peerigon/updtr).
 
 
 ## NPM Commands
