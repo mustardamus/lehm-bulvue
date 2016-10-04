@@ -1,10 +1,8 @@
 # Vue Bulma
 
-This app uses [Vue](http://vuejs.org/api/) as the JS framework and
+This app uses [Vue 2](http://vuejs.org/api/) as the JS framework and
 [Bulma](http://bulma.io/documentation/elements/box/) as the HTML/CSS framework.
 
-Note that the `next` (aka 2.0) branches are used for Vue and VueRouter. They are
-in beta right now, but quite usable.
 
 ## Single file Vue components
 
@@ -75,11 +73,11 @@ This Vue app has a very lightweight state management you can find implemented in
 - Access the global state in actions, components and containers with
   `this.$state`.
 - Only manipulate the state in actions.
-- Actions are stored in `./client/actions/*.js`, their filename is their
-  namespace.
+- Actions are stored in `./client/actions/*.js` and loaded dynamically, their
+filename is their namespace.
 - Call namespaced actions from components and containers with
   `this.$actions.namespace.action()`.
-- Use `this.$stateMap` in components and containers to watch a field of the
+- Use `this.$mapState` in components and containers to watch a field of the
   global state and update the local state on change.
 
 ### State
@@ -122,7 +120,7 @@ You can access this action from a component or container with
 
 ### Watch global state for changes
 
-For convinience this implementation adds a `this.$stateMap` function to every
+For convinience this implementation adds a `this.$mapState` function to every
 Vue component as a mixin. This takes a single string or array of strings, which
 are keypaths in the global state Object, watches for changes, and update the
 local state where the `$stateMap` function was called.
@@ -131,16 +129,22 @@ Take this Vue component for example:
 
     {
       template: 'Hi {{userInfo.username}}!',
+      data () {
+        return {
+          userInfo: { // not required if you call `$mapState` in `created`
+            username: 'loading...'
+          }
+        }
+      },
       watch: {
         userInfo: 'onUserInfoChange'
       },
       created: {
-        this.$stateMap('userInfo')
-        // this.$stateMap(['keypath1', 'keypath2'])
+        this.$mapState('userInfo')
+        // this.$mapState(['keypath1', 'keypath2'])
 
         // action will change global state
-        // $stateWatch will change local state
-        // from there on it's in Vue's hands
+        // $mapState will change local state from there on it's in Vue's hands
         this.$actions.users.updateUsername('Goodbwoy')
       },
       methods: {
@@ -150,9 +154,9 @@ Take this Vue component for example:
       }
     }
 
-Make sure that you call `$stateMap` in the `created` callback. That way you
+Make sure that you call `$mapState` in the `created` callback. That way you
 avoid Vue throwing an warning that the mapped field does not exist in `$data`.
-Otherwise just define it yourself and call `$stateMap` anywhere.
+Otherwise just define it yourself and call `$mapState` anywhere.
 
 Note that right now you only can access top level keypaths in the state. For
-example `this.$stateMap('userInfo.username')` will not work. Work in progress.
+example `this.$mapState('userInfo.username')` will not work. Work in progress.

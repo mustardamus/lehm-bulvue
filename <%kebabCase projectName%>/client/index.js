@@ -59,7 +59,7 @@ Vue.mixin({
       }
     }
 
-    this.$stateMap = function (keypaths) {
+    this.$mapState = function (keypaths) {
       if (keypaths.constructor !== Array) {
         keypaths = [keypaths]
       }

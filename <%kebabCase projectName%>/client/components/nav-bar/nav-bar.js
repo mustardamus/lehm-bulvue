@@ -9,6 +9,10 @@ export default {
     '$route': 'onRouteChange'
   },
 
+  mounted () {
+
+  },
+
   methods: {
     onNavToggleClick () {
       this.menuActive = !this.menuActive

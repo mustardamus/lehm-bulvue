@@ -13,8 +13,8 @@ export default {
 
   },
 
-  mounted () {
-    this.$stateMap([])
+  created () {
+    // this.$mapState(['keypath1', 'keypath2'])
   },
 
   methods: {
