@@ -1,7 +1,6 @@
-# Vue Bulma
+# Vue
 
-This app uses [Vue 2](http://vuejs.org/api/) as the JS framework and
-[Bulma](http://bulma.io/documentation/elements/box/) as the HTML/CSS framework.
+This app uses [Vue 2](http://vuejs.org/api/) as the JS framework.
 
 
 ## Single file Vue components
