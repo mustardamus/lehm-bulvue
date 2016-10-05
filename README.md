@@ -30,11 +30,11 @@ features, descriptions, kewl tech used and commands.
 
 2. Clone this repo to your templates directory:
 
-    ~/templates $ git clone https://github.com/mustardamus/lehm-frontend-boilderplate-vueify.git
+    ~/templates $ git clone https://github.com/mustardamus/lehm-bulvue.git
 
 3. Create the boilerplate with Lehm:
 
-    ~/code $ lehm create lehm-boilerplate-frontend-vueify
+    ~/code $ lehm create lehm-bulvue
 
 4. Answer the questions, get a Club Mate while it installs the dependencies,
    code away.
