@@ -1,15 +1,15 @@
 'use strict'
 
 module.exports = {
-  name: 'Frontend Boilerplate Vueify',
-  description: 'https://github.com/mustardamus/lehm-frontend-boilerplate-vueify',
+  name: 'Frontend Boilerplate - Bulma & Vue.js',
+  description: 'https://github.com/mustardamus/lehm-bulvue',
   delimiters: '<% %>',
   ignore: ['README.md'],
 
   after: function (srcPath, distPath, variables, utils) {
     let readme = `# ${variables.projectName}
 
-[Development Environment Docs](docs/client.md) - [Vue App Docs](docs/vue-bulma.md)
+[Development Environment Docs](docs/client.md) - [Vue App Docs](docs/vue.md)
 
 ${variables.description}`
 

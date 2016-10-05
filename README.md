@@ -1,4 +1,4 @@
-# Frontend Boilerplate Vueify
+# Frontend Boilerplate - Bulma & Vue.js
 
 This is a frontend boilerplate template for the
 [Lehm file-generator](https://mustardamus.github.io/lehm/) with funky features
@@ -18,7 +18,7 @@ such as:
 
 Check out the specific documentations (
 [development environment](<%kebabCase projectName%>/docs/client.md) and
-[Vue app](<%kebabCase projectName%>/docs/vue-bulma.md) for a extended list of
+[Vue app](<%kebabCase projectName%>/docs/vue.md) for a extended list of
 features, descriptions, kewl tech used and commands.
 
 
@@ -41,5 +41,5 @@ features, descriptions, kewl tech used and commands.
 
 ## Extensions
 
-- [Phonegap](https://github.com/mustardamus/lehm-frontend-extend-phonegap)
-- [Font-Awesome](https://github.com/mustardamus/lehm-frontend-extend-fontawesome)
+- [Font-Awesome](https://github.com/mustardamus/lehm-bulvue-extend-fontawesome)
+- [Phonegap](https://github.com/mustardamus/lehm-bulvue-extend-phonegap)
