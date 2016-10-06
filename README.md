@@ -43,3 +43,4 @@ features, descriptions, kewl tech used and commands.
 
 - [Font-Awesome](https://github.com/mustardamus/lehm-bulvue-extend-fontawesome)
 - [Phonegap](https://github.com/mustardamus/lehm-bulvue-extend-phonegap)
+- [Vue-App common stuff](https://github.com/mustardamus/lehm-bulvue-extend-vue-common)
