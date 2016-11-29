@@ -3,7 +3,7 @@
 module.exports = {
   name: 'Frontend Boilerplate - Bulma & Vue.js',
   description: 'https://github.com/mustardamus/lehm-bulvue',
-  delimiters: '<% %>',
+  delimiters: '{% %}',
   ignore: ['README.md'],
 
   after: function (srcPath, distPath, variables, utils) {
@@ -13,7 +13,7 @@ module.exports = {
 
 ${variables.description}`
 
-    let projectName = utils.Handlebars.transform('<% kebabCase projectName %>', variables)
+    let projectName = utils.Handlebars.transform('{% kebabCase projectName %}', variables)
     let path = distPath + '/' + projectName
     let yesNo = (question) => {
       return [

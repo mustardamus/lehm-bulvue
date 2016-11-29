@@ -1,12 +1,12 @@
-<%! projectName # Name of your new project %>
-<%! description # Short description of your new project %>
-<%! author # Author (Your Name <your@mail.com>) %>
+{%! projectName # Name of your new project %}
+{%! description # Short description of your new project %}
+{%! author # Author (Your Name <your@mail.com>) %}
 
 {
-  "name": "<% kebabCase projectName %>",
+  "name": "{% kebabCase projectName %}",
   "version": "0.1.0",
-  "description": "<% description %>",
-  "author": "<% author %>",
+  "description": "{% description %}",
+  "author": "{% author %}",
   "config": {
     "clientSrcDir": "client",
     "clientDistDir": "www",

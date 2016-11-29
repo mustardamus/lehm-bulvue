@@ -17,8 +17,8 @@ such as:
 - Dynamic routes and actions
 
 Check out the specific documentations
-[development environment](<%kebabCase projectName%>/docs/client.md) and
-[Vue app](<%kebabCase projectName%>/docs/vue.md) for a extended list of
+[development environment]({%kebabCase projectName%}/docs/client.md) and
+[Vue app]({%kebabCase projectName%}/docs/vue.md) for a extended list of
 features, descriptions, kewl tech used and commands.
 
 
