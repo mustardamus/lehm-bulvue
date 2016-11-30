@@ -46,20 +46,18 @@ if (process.env.NODE_ENV === 'development') {
 
 Vue.mixin({
   created () {
-    let $actions = {}
+    $root.$actions = this.$actions = {}
     this.$state = $root.$data
 
     for (let actionNamespace in actionsObj) {
-      $actions[actionNamespace] = {}
+      this.$actions[actionNamespace] = {}
 
       for (let actionName in actionsObj[actionNamespace]) {
-        $actions[actionNamespace][actionName] = function () {
+        this.$actions[actionNamespace][actionName] = function () {
           actionsObj[actionNamespace][actionName].apply($root, arguments)
         }
       }
     }
-
-    this.$root.$actions = this.$actions
 
     this.$mapState = function (keypaths) {
       if (keypaths.constructor !== Array) {
