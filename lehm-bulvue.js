@@ -6,7 +6,7 @@ module.exports = {
   delimiters: '{% %}',
   ignore: ['README.md'],
 
-  after: function (srcPath, distPath, variables, utils) {
+  after ({ srcPath, distPath, variables, utils }) {
     let readme = `# ${variables.projectName}
 
 [Development Environment Docs](docs/client.md) - [Vue App Docs](docs/vue.md)
